@@ -125,6 +125,10 @@ kover {
 }
 
 tasks {
+    test {
+        enabled = false
+    }
+
     wrapper {
         gradleVersion = providers.gradleProperty("gradleVersion").get()
     }

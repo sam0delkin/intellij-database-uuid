@@ -1,15 +1,23 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.sam0delkin.intellijdatabaseuuid</id>
-    <name>intellij-database-uuid</name>
+    <name>Database UUID</name>
     <vendor>sam0delkin</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.database</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
+    <extensions defaultExtensionNs="com.intellij.database">
+        <dataConsumer implementation="com.github.sam0delkin.intellijdatabaseuuid.dataConsumer.MyDataConsumer"/>
+    </extensions>
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.sam0delkin.intellijdatabaseuuid.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.sam0delkin.intellijdatabaseuuid.startup.MyProjectActivity" />
+        <projectConfigurable
+                parentId="tools"
+                instance="com.github.sam0delkin.intellijdatabaseuuid.configurable.ProjectConfigurable"
+                id="com.github.sam0delkin.intellijdatabaseuuid.configurable.ProjectConfigurable"
+                displayName="Intellij UUID"
+                nonDefaultProject="true"/>
     </extensions>
 </idea-plugin>
